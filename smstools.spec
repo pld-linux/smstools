@@ -38,7 +38,8 @@ np. bramkê email->SMS.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/etc/{rc.d/init.d,sysconfig},%{_sbindir},%{_libdir}/%{name},/var/spool/sms/{incoming,outgoing,failed,sent,OTHER}}
+install -d $RPM_BUILD_ROOT{/etc/{rc.d/init.d,sysconfig},%{_sbindir},%{_libdir}/%{name}} \
+	$RPM_BUILD_ROOT/var/spool/sms/{incoming,outgoing,failed,sent,OTHER}
 
 install examples/smsd.conf $RPM_BUILD_ROOT%{_sysconfdir}
 install bin/{smsd,getsms,putsms} $RPM_BUILD_ROOT%{_sbindir}
