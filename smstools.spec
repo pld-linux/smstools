@@ -13,7 +13,7 @@ Patch1:		%{name}-Makefile.patch
 URL:		http://www.isis.de/~s.frings/smstools_index.html
 BuildRequires:	mm-devel
 Prereq:		rc-scripts
-Requires(post,preun):/sbin/chkconfig
+Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -34,8 +34,7 @@ np. bramkê email->SMS.
 %patch1 -p1
 
 %build
-export CFLAGS='%{rpmcflags}'
-%{__make} CC='%{__cc}'
+%{__make} CC='%{__cc}' CFLAGS='%{rpmcflags}'
 
 %install
 rm -rf $RPM_BUILD_ROOT
