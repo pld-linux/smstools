@@ -1,7 +1,7 @@
 Summary:	SMS Server Tools
 Summary(pl):	Narzêdzia serwera SMS
 Name:		smstools
-Version:	1.7.8
+Version:	1.8.0
 Release:	1
 License:	GPL v2+
 Group:		Applications/Communications
@@ -9,6 +9,7 @@ Source0:	http://www.isis.de/~s.frings/smstools/packages/%{name}-%{version}.tar.g
 Source1:	%{name}.sysconfig
 Source2:	%{name}.init
 Patch0:		%{name}-daemonize.patch
+Patch1:		%{name}-Makefile.patch
 URL:		http://www.isis.de/~s.frings/smstools_index.html
 BuildRequires:	mm-devel
 Prereq:		rc-scripts
@@ -30,9 +31,11 @@ np. bramkê email->SMS.
 %prep
 %setup -q -n smstools
 %patch0 -p1
+%patch1 -p1
 
 %build
-%{__make} CC='%{__cc}' OPTIONS='%{rpmcflags}'
+export CFLAGS='%{rpmcflags}'
+%{__make} CC='%{__cc}'
 
 %install
 rm -rf $RPM_BUILD_ROOT
