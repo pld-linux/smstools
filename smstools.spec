@@ -1,7 +1,7 @@
 Summary:	SMS Server Tools
 Summary(pl):	Narzêdzia serwera SMS
 Name:		smstools
-Version:	1.7.5
+Version:	1.7.6
 Release:	1
 License:	GPL v2+
 Group:		Applications/Communications
@@ -38,7 +38,7 @@ np. bramkê email->SMS.
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{/etc/{rc.d/init.d,sysconfig},%{_sbindir},%{_libdir}/%{name},/var/spool/sms/{incoming,outgoing,failed,sent,OTHER}}
 
-install examples/smsd.{conf,black} $RPM_BUILD_ROOT%{_sysconfdir}
+install examples/smsd.conf $RPM_BUILD_ROOT%{_sysconfdir}
 install bin/{smsd,getsms,putsms} $RPM_BUILD_ROOT%{_sbindir}
 install bin/{email2sms,mysmsd,sendsms,smsevent} $RPM_BUILD_ROOT%{_libdir}/%{name}
 
@@ -70,7 +70,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc doc/manual.html doc/html
+%doc doc/manual.html doc/html examples/smsd.{black,white}
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/smsd.*
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/smsd
 %attr(754,root,root) /etc/rc.d/init.d/smsd
