@@ -1,0 +1,4 @@
+# Customized setings for smsd
+
+# Nice level for smsd
+SERVICE_RUN_NICE_LEVEL="+5"

@@ -1,0 +1,58 @@
+#!/bin/sh
+#
+# smsd		This shell script takes care of starting and stopping smsd.
+#
+# chkconfig:	2345 85 25
+# description:	smsd is a SMS sending/receiving daemon
+#		
+# processname:	smsd
+# config:	
+# pidfile:
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source oident configureation.
+if [ -f /etc/sysconfig/smsd ] ; then
+	. /etc/sysconfig/smsd
+fi
+
+# See how we were called.
+case "$1" in
+  start)
+	# Start daemons.
+	if [ ! -f /var/lock/subsys/smsd ]; then
+		msg_starting smsd
+		find /var/spool/sms -name '*.LOCK' -exec rm {} \;
+		daemon smsd
+		RETVAL=$?
+		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/smsd
+	else
+		msg_Already_Running smsd
+	fi
+	;;
+  stop)
+	# Stop daemons.
+	if [ -f /var/lock/subsys/smsd ]; then
+		msg_stopping smsd
+		killproc smsd
+		rm -f /var/lock/subsys/smsd >/dev/null 2>&1
+	else
+		msg_Not_Running smsd
+		exit 1
+	fi	
+	;;
+  restart)
+	$0 stop
+	$0 start
+	;;
+  status)
+	status smsd
+	;;
+  *)
+	msg_usage "$0 {start|stop|restart|status}"
+	exit 1
+esac
+
+exit $RETVAL
+
