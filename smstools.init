@@ -28,7 +28,7 @@ case "$1" in
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/smsd
 	else
-		msg_Already_Running smsd
+		msg_already_running smsd
 	fi
 	;;
   stop)
@@ -38,7 +38,7 @@ case "$1" in
 		killproc smsd
 		rm -f /var/lock/subsys/smsd >/dev/null 2>&1
 	else
-		msg_Not_Running smsd
+		msg_not_running smsd
 		exit 1
 	fi	
 	;;
