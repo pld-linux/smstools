@@ -1,12 +1,12 @@
 Summary:	SMS Server Tools
 Summary(pl):	Narzêdzia serwera SMS
 Name:		smstools
-Version:	1.13
+Version:	1.13.1
 Release:	1
-License:	GPL v2+
+License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://www.isis.de/~s.frings/smstools/packages/%{name}-%{version}.tar.gz
-# Source0-md5:	50e87d96079fefc6be95d35ab998e6b6
+# Source0-md5:	7e1bb657c76f13ca08cbd3fa700a7f4c
 Source1:	%{name}.sysconfig
 Source2:	%{name}.init
 Patch0:		%{name}-daemonize.patch
@@ -44,7 +44,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{/etc/{rc.d/init.d,sysconfig},%{_sbindir},%{_libdir}/%{name}} \
 	$RPM_BUILD_ROOT/var/spool/sms/{incoming,outgoing,failed,sent,OTHER}
 
-install examples/smsd.conf $RPM_BUILD_ROOT/etc
+install examples/smsd.conf.full $RPM_BUILD_ROOT/etc/smsd.conf
 install bin/{smsd,getsms,putsms} $RPM_BUILD_ROOT%{_sbindir}
 install bin/{email2sms,mysmsd,sendsms,smsevent} $RPM_BUILD_ROOT%{_libdir}/%{name}
 
@@ -72,7 +72,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc doc/manual.html doc/html examples/smsd.{black,white}
+%doc doc/manual.html doc/html examples/smsd.{black,white,conf.{easy,full}}
 %config(noreplace) %verify(not size mtime md5) /etc/smsd.*
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/smsd
 %attr(754,root,root) /etc/rc.d/init.d/smsd
