@@ -1,17 +1,17 @@
---- smstools/src/Makefile.orig	Sat Jan 18 12:37:00 2003
-+++ smstools/src/Makefile	Sat Jan 18 12:38:07 2003
+--- smstools/src/Makefile.orig	Sat May 17 13:53:02 2003
++++ smstools/src/Makefile	Tue May 20 09:45:58 2003
 @@ -15,30 +15,30 @@
  all: ../bin/smsd ../bin/getsms ../bin/putsms
  
- extras.o:
+ extras.o: extras.c
 -	gcc $(OPTIONS) -c -o extras.o extras.c
 +	$(CC) $(CFLAGS) $(OPTIONS) -c -o extras.o extras.c
  
- modeminit.o:
+ modeminit.o: modeminit.c
 -	gcc $(OPTIONS) -c -o modeminit.o modeminit.c
 +	$(CC) $(CFLAGS) $(OPTIONS) -c -o modeminit.o modeminit.c
  
- stats.o:
+ stats.o: stats.c
  	if [ -z "$(NOSTATS)" ]; then \
 -	  gcc -c -o stats.o stats.c; \
 +	  $(CC) $(CFLAGS) -c -o stats.o stats.c; \
@@ -29,7 +29,7 @@
 +	  $(CC) $(CFLAGS) $(OPTIONS) -D NOSTATS -o ../bin/smsd smsd.c $(OBJ); \
  	fi;
  
- ../bin/getsms: $(OBJ2)
+ ../bin/getsms: getsms.c $(OBJ2)
 -	gcc $(OPTIONS) -o ../bin/getsms getsms.c $(OBJ2)
 +	$(CC) $(CFLAGS) $(OPTIONS) -o ../bin/getsms getsms.c $(OBJ2)
  
