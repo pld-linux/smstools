@@ -1,0 +1,41 @@
+--- smstools/src/Makefile.orig	Sat Jan 18 12:37:00 2003
++++ smstools/src/Makefile	Sat Jan 18 12:38:07 2003
+@@ -15,30 +15,30 @@
+ all: ../bin/smsd ../bin/getsms ../bin/putsms
+ 
+ extras.o:
+-	gcc $(OPTIONS) -c -o extras.o extras.c
++	$(CC) $(CFLAGS) $(OPTIONS) -c -o extras.o extras.c
+ 
+ modeminit.o:
+-	gcc $(OPTIONS) -c -o modeminit.o modeminit.c
++	$(CC) $(CFLAGS) $(OPTIONS) -c -o modeminit.o modeminit.c
+ 
+ stats.o:
+ 	if [ -z "$(NOSTATS)" ]; then \
+-	  gcc -c -o stats.o stats.c; \
++	  $(CC) $(CFLAGS) -c -o stats.o stats.c; \
+ 	else \
+-	  gcc -D NOSTATS -c -o stats.o stats.c; \
++	  $(CC) $(CFLAGS) -D NOSTATS -c -o stats.o stats.c; \
+ 	fi;
+ 
+ ../bin/smsd: smsd.c $(OBJ)
+ 	if [ -z "$(NOSTATS)" ]; then \
+-	  gcc `mm-config --cflags` $(OPTIONS) -o ../bin/smsd smsd.c $(OBJ) `mm-config --ldflags --libs`; \
++	  $(CC) $(CFLAGS) `mm-config --cflags` $(OPTIONS) -o ../bin/smsd smsd.c $(OBJ) `mm-config --ldflags --libs`; \
+ 	else \
+-	  gcc $(OPTIONS) -D NOSTATS -o ../bin/smsd smsd.c $(OBJ); \
++	  $(CC) $(CFLAGS) $(OPTIONS) -D NOSTATS -o ../bin/smsd smsd.c $(OBJ); \
+ 	fi;
+ 
+ ../bin/getsms: $(OBJ2)
+-	gcc $(OPTIONS) -o ../bin/getsms getsms.c $(OBJ2)
++	$(CC) $(CFLAGS) $(OPTIONS) -o ../bin/getsms getsms.c $(OBJ2)
+ 
+ ../bin/putsms: putsms.c $(OBJ2)
+-	gcc $(OPTIONS) -o ../bin/putsms putsms.c $(OBJ2)
++	$(CC) $(CFLAGS) $(OPTIONS) -o ../bin/putsms putsms.c $(OBJ2)
+ 
+ clean:
+ 	rm -f *.o
