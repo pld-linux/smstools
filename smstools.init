@@ -17,6 +17,7 @@ if [ -f /etc/sysconfig/smsd ] ; then
 	. /etc/sysconfig/smsd
 fi
 
+
 # See how we were called.
 case "$1" in
   start)
@@ -29,6 +30,7 @@ case "$1" in
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/smsd
 	else
 		msg_already_running smsd
+		exit 1
 	fi
 	;;
   stop)
@@ -42,17 +44,20 @@ case "$1" in
 		exit 1
 	fi	
 	;;
-  restart)
+  restart|reload)
 	$0 stop
 	$0 start
+	;;
+  force-reload)
+	$0 stop && $0 start
+	exit $?
 	;;
   status)
 	status smsd
 	;;
   *)
-	msg_usage "$0 {start|stop|restart|status}"
+	msg_usage "$0 {start|stop|restart|reload|force-reload|status}"
 	exit 1
 esac
 
 exit $RETVAL
-
