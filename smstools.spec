@@ -1,7 +1,7 @@
 Summary:	SMS Server Tools
 Summary(pl):	Narzêdzia serwera SMS
 Name:		smstools
-Version:	1.10.0
+Version:	1.10.1
 Release:	1
 License:	GPL v2+
 Group:		Applications/Communications
@@ -10,7 +10,6 @@ Source1:	%{name}.sysconfig
 Source2:	%{name}.init
 Patch0:		%{name}-daemonize.patch
 Patch1:		%{name}-Makefile.patch
-Patch2:		%{name}-segv.patch
 URL:		http://www.isis.de/~s.frings/smstools_index.html
 BuildRequires:	mm-devel
 PreReq:		rc-scripts
@@ -33,7 +32,6 @@ np. bramkê email->SMS.
 %setup -q -n smstools
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 %{__make} CC='%{__cc}' CFLAGS='%{rpmcflags}'
