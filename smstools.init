@@ -24,7 +24,7 @@ case "$1" in
 	if [ ! -f /var/lock/subsys/smsd ]; then
 		msg_starting smsd
 		find /var/spool/sms -name '*.LOCK' -exec rm {} \;
-		daemon smsd
+		daemon setsid smsd < /dev/null > /dev/null 2>&1
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/smsd
 	else
