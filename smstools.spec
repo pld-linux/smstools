@@ -50,14 +50,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %pre
 
-%preun
-if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/smsd ]; then
-		/etc/rc.d/init.d/smsd stop 1>&2
-	fi
-	/sbin/chkconfig --del smsd
-fi
-
 %post
 /sbin/chkconfig --add smsd
 if [ -f /var/lock/subsys/smsd ]; then
@@ -66,7 +58,13 @@ else
 	echo "Run \"/etc/rc.d/init.d/smsd start\" to start sms daemon."
 fi
 
-%postun
+%preun
+if [ "$1" = "0" ]; then
+	if [ -f /var/lock/subsys/smsd ]; then
+		/etc/rc.d/init.d/smsd stop 1>&2
+	fi
+	/sbin/chkconfig --del smsd
+fi
 
 %files
 %defattr(644,root,root,755)
