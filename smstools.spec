@@ -1,12 +1,12 @@
 Summary:	SMS Server Tools
 Summary(pl):	Narzêdzia serwera SMS
 Name:		smstools
-Version:	1.14.5
+Version:	1.14.6
 Release:	1
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://www.isis.de/~s.frings/smstools/packages/%{name}-%{version}.tar.gz
-# Source0-md5:	12767c0c0c0e7035aa34a7013b14fa9f
+# Source0-md5:	2951d8337b51570901efd53c57208f19
 Source1:	%{name}.sysconfig
 Source2:	%{name}.init
 Patch0:		%{name}-daemonize.patch
@@ -72,7 +72,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc doc/manual.html doc/html examples/smsd.{black,white,conf.{easy,full}}
+%doc doc/manual.html doc/html examples/smsd.{black,conf.{easy,full}}
 %config(noreplace) %verify(not size mtime md5) /etc/smsd.*
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/smsd
 %attr(754,root,root) /etc/rc.d/init.d/smsd
