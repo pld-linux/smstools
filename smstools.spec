@@ -1,17 +1,17 @@
 Summary:	SMS Server Tools
 Summary(pl):	Narzêdzia serwera SMS
 Name:		smstools
-Version:	1.14.6
+Version:	1.14.7
 Release:	1
 License:	GPL v2
 Group:		Applications/Communications
-Source0:	http://www.isis.de/~s.frings/smstools/packages/%{name}-%{version}.tar.gz
-# Source0-md5:	2951d8337b51570901efd53c57208f19
+Source0:	http://www.meinemullemaus.de/smstools/packages/%{name}-%{version}.tar.gz
+# Source0-md5:	766e3e9a05674e159ffbbcecdadb1ad4
 Source1:	%{name}.sysconfig
 Source2:	%{name}.init
 Patch0:		%{name}-daemonize.patch
 Patch1:		%{name}-Makefile.patch
-URL:		http://www.isis.de/~s.frings/smstools_index.html
+URL:		http://www.meinemullemaus.de/smstools/index.html
 BuildRequires:	mm-devel
 PreReq:		rc-scripts
 Requires(post,preun):	/sbin/chkconfig
