@@ -1,7 +1,7 @@
 Summary:	SMS Server Tools
 Summary(pl):	Narzêdzia serwera SMS
 Name:		smstools
-Version:	1.9.0
+Version:	1.10.2
 Release:	1
 License:	GPL v2+
 Group:		Applications/Communications
@@ -12,7 +12,7 @@ Patch0:		%{name}-daemonize.patch
 Patch1:		%{name}-Makefile.patch
 URL:		http://www.isis.de/~s.frings/smstools_index.html
 BuildRequires:	mm-devel
-Prereq:		rc-scripts
+PreReq:		rc-scripts
 Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -50,8 +50,6 @@ install %{SOURCE2} $RPM_BUILD_ROOT/etc/rc.d/init.d/smsd
 
 %clean
 rm -rf $RPM_BUILD_ROOT
-
-%pre
 
 %post
 /sbin/chkconfig --add smsd
