@@ -18,10 +18,13 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 The SMS Server Tools were made to send and receive SMS from one or
 many GSM modems. They include a send/receive daemon and some sample
 scripts to build an SMS email gateway and for logging into an SQL
-database. The daemon waits for files in an outgoing spool directory
-and sends them. It puts all received SMS in an incoming spool
-directory, and can call any external program for incoming or outgoing
-notification.
+database.
+
+%description -l pl
+SMS Server Tools jest pakietem stworzonym do wysy³ania i odbierania
+SMSów z jednego lub kilku modemów GSM. Zawiera demona do wysy³ania i
+odbierania przesy³ek oraz zestaw skryptów dziêki którym mo¿na stworzyæ
+np. bramkê email->SMS.
 
 %prep
 %setup -q -n smstools
@@ -54,9 +57,9 @@ if [ "$1" = "0" ]; then
 fi
 
 %post
-/sbin/chkconfig --add identd
-if [ -f /var/lock/subsys/identd ]; then
-	/etc/rc.d/init.d/identd restart 1>&2
+/sbin/chkconfig --add smsd
+if [ -f /var/lock/subsys/smsd ]; then
+	/etc/rc.d/init.d/smsd restart 1>&2
 else
 	echo "Run \"/etc/rc.d/init.d/smsd start\" to start sms daemon."
 fi
