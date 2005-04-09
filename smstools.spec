@@ -44,7 +44,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{/etc/{rc.d/init.d,sysconfig},%{_sbindir},%{_libdir}/%{name}} \
 	$RPM_BUILD_ROOT/var/spool/sms/{incoming,outgoing,failed,sent,OTHER}
 
-install examples/smsd.conf.full $RPM_BUILD_ROOT/etc/smsd.conf
+install examples/smsd.conf.full $RPM_BUILD_ROOT%{_sysconfdir}/smsd.conf
 install bin/{smsd,getsms,putsms} $RPM_BUILD_ROOT%{_sbindir}
 install bin/{email2sms,mysmsd,sendsms,smsevent} $RPM_BUILD_ROOT%{_libdir}/%{name}
 
@@ -73,8 +73,8 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc doc/manual.html doc/html examples/smsd.{black,conf.{easy,full}}
-%config(noreplace) %verify(not size mtime md5) /etc/smsd.*
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/smsd
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/smsd.*
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/smsd
 %attr(754,root,root) /etc/rc.d/init.d/smsd
 %attr(755,root,root) %{_sbindir}/*
 %dir %{_libdir}/%{name}
