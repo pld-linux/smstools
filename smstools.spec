@@ -13,8 +13,9 @@ Patch0:		%{name}-daemonize.patch
 Patch1:		%{name}-Makefile.patch
 URL:		http://www.meinemullemaus.de/software/smstools/index.html
 BuildRequires:	mm-devel
-PreReq:		rc-scripts
+BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(post,preun):	/sbin/chkconfig
+Requires:	rc-scripts
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -30,7 +31,7 @@ odbierania przesy³ek oraz zestaw skryptów dziêki którym mo¿na stworzyæ
 np. bramkê email->SMS.
 
 %prep
-%setup -q -n smstools
+%setup -q -n %{name}
 %patch0 -p1
 %patch1 -p1
 
@@ -56,17 +57,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add smsd
-if [ -f /var/lock/subsys/smsd ]; then
-	/etc/rc.d/init.d/smsd restart 1>&2
-else
-	echo "Run \"/etc/rc.d/init.d/smsd start\" to start sms daemon."
-fi
+%service smsd restart "sms daemon"
 
 %preun
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/smsd ]; then
-		/etc/rc.d/init.d/smsd stop 1>&2
-	fi
+	%service smsd stop
 	/sbin/chkconfig --del smsd
 fi
 
