@@ -2,7 +2,7 @@ Summary:	SMS Server Tools
 Summary(pl):	Narzêdzia serwera SMS
 Name:		smstools
 Version:	1.15.4
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://smstools.meinemullemaus.de/packages/%{name}-%{version}.tar.gz
