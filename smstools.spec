@@ -1,12 +1,12 @@
 Summary:	SMS Server Tools
 Summary(pl):	Narzêdzia serwera SMS
 Name:		smstools
-Version:	1.15.4
-Release:	2
+Version:	2.2.4b
+Release:	1
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://smstools.meinemullemaus.de/packages/%{name}-%{version}.tar.gz
-# Source0-md5:	87ffe50235aea6d3bfb2d16f3d52b6cf
+# Source0-md5:	00b26533bf4ccd57ae9066c63da46640
 Source1:	%{name}.sysconfig
 Source2:	%{name}.init
 Patch0:		%{name}-daemonize.patch
@@ -46,7 +46,7 @@ install -d $RPM_BUILD_ROOT{/etc/{rc.d/init.d,sysconfig},%{_sbindir},%{_libdir}/%
 	$RPM_BUILD_ROOT/var/spool/sms/{incoming,outgoing,failed,sent,OTHER}
 
 install examples/smsd.conf.full $RPM_BUILD_ROOT%{_sysconfdir}/smsd.conf
-install bin/{smsd,getsms,putsms} $RPM_BUILD_ROOT%{_sbindir}
+install src/smsd $RPM_BUILD_ROOT%{_sbindir}
 install scripts/{email2sms,mysmsd,sendsms,smsevent} $RPM_BUILD_ROOT%{_libdir}/%{name}
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/sysconfig/smsd
