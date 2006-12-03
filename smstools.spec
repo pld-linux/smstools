@@ -1,12 +1,12 @@
 Summary:	SMS Server Tools
 Summary(pl):	Narzêdzia serwera SMS
 Name:		smstools
-Version:	2.2.12
+Version:	2.2.13
 Release:	1
 License:	GPL v2
 Group:		Applications/Communications
-Source0:	http://smstools.meinemullemaus.de/packages/%{name}-%{version}.tar.gz
-# Source0-md5:	862a7a14c94e6ddd3afb614b437bd1b8
+Source0:	http://www.meinemullemaus.de/smstools/packages/%{name}-%{version}.tar.gz
+# Source0-md5:	eebf0c718a861384ff1b156c45f5d213
 Source1:	%{name}.sysconfig
 Source2:	%{name}.init
 Patch0:		%{name}-daemonize.patch
