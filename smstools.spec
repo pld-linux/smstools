@@ -1,5 +1,5 @@
 Summary:	SMS Server Tools
-Summary(pl.UTF-8):   Narzędzia serwera SMS
+Summary(pl.UTF-8):	Narzędzia serwera SMS
 Name:		smstools
 Version:	2.2.13
 Release:	1
