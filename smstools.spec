@@ -1,5 +1,5 @@
 Summary:	SMS Server Tools
-Summary(pl):	Narzêdzia serwera SMS
+Summary(pl.UTF-8):   NarzÄ™dzia serwera SMS
 Name:		smstools
 Version:	2.2.13
 Release:	1
@@ -24,11 +24,11 @@ many GSM modems. They include a send/receive daemon and some sample
 scripts to build an SMS email gateway and for logging into an SQL
 database.
 
-%description -l pl
-SMS Server Tools jest pakietem stworzonym do wysy³ania i odbierania
-SMSów z jednego lub kilku modemów GSM. Zawiera demona do wysy³ania i
-odbierania przesy³ek oraz zestaw skryptów dziêki którym mo¿na stworzyæ
-np. bramkê email->SMS.
+%description -l pl.UTF-8
+SMS Server Tools jest pakietem stworzonym do wysyÅ‚ania i odbierania
+SMSÃ³w z jednego lub kilku modemÃ³w GSM. Zawiera demona do wysyÅ‚ania i
+odbierania przesyÅ‚ek oraz zestaw skryptÃ³w dziÄ™ki ktÃ³rym moÅ¼na stworzyÄ‡
+np. bramkÄ™ email->SMS.
 
 %prep
 %setup -q -n %{name}
