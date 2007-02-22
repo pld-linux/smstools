@@ -1,12 +1,12 @@
 Summary:	SMS Server Tools
 Summary(pl.UTF-8):	Narzędzia serwera SMS
 Name:		smstools
-Version:	2.2.13
+Version:	2.2.14
 Release:	1
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://www.meinemullemaus.de/smstools/packages/%{name}-%{version}.tar.gz
-# Source0-md5:	eebf0c718a861384ff1b156c45f5d213
+# Source0-md5:	05225fade4eafb7c162adebd749c7282
 Source1:	%{name}.sysconfig
 Source2:	%{name}.init
 Patch0:		%{name}-daemonize.patch
@@ -74,4 +74,9 @@ fi
 %attr(755,root,root) %{_sbindir}/*
 %dir %{_libdir}/%{name}
 %attr(755,root,root) %{_libdir}/%{name}/*
-/var/spool/sms
+%dir /var/spool/sms/
+%attr(750,root,root) /var/spool/sms/OTHER
+%attr(750,root,root) /var/spool/sms/failed
+%attr(750,root,root) /var/spool/sms/incoming
+%attr(770,root,uucp) /var/spool/sms/outgoing
+%attr(750,root,root) /var/spool/sms/sent
