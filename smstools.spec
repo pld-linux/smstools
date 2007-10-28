@@ -75,8 +75,8 @@ fi
 %dir %{_libdir}/%{name}
 %attr(755,root,root) %{_libdir}/%{name}/*
 %dir %attr(710,root,uucp) /var/spool/sms/
-%attr(750,root,root) /var/spool/sms/OTHER
-%attr(750,root,root) /var/spool/sms/failed
-%attr(750,root,root) /var/spool/sms/incoming
-%attr(1730,root,uucp) /var/spool/sms/outgoing
-%attr(750,root,root) /var/spool/sms/sent
+%dir %attr(750,root,root) /var/spool/sms/OTHER
+%dir %attr(750,root,root) /var/spool/sms/failed
+%dir %attr(750,root,root) /var/spool/sms/incoming
+%dir %attr(1730,root,uucp) /var/spool/sms/outgoing
+%dir %attr(750,root,root) /var/spool/sms/sent
