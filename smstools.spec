@@ -11,7 +11,7 @@ Source1:	%{name}.sysconfig
 Source2:	%{name}.init
 Patch0:		%{name}-daemonize.patch
 Patch1:		%{name}-Makefile.patch
-URL:		http://www.meinemullemaus.de/software/smstools/index.html
+URL:		http://www.meinemullemaus.de/downloads/smstools.html
 BuildRequires:	mm-devel
 BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(post,preun):	/sbin/chkconfig
