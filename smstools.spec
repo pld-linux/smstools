@@ -5,13 +5,13 @@ Version:	2.2.20
 Release:	1
 License:	GPL v2
 Group:		Applications/Communications
-Source0:	http://www.meinemullemaus.de/smstools/packages/%{name}-%{version}.tar.gz
+Source0:	http://stefanfrings.de/smstools/%{name}-%{version}.tar.gz
 # Source0-md5:	8c77f2b461595b7a317fc4d0d2691956
 Source1:	%{name}.sysconfig
 Source2:	%{name}.init
 Patch0:		%{name}-daemonize.patch
 Patch1:		%{name}-Makefile.patch
-URL:		http://www.meinemullemaus.de/downloads/smstools.html
+URL:		http://stefanfrings.de/smstools/index-en.html
 BuildRequires:	mm-devel
 BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(post,preun):	/sbin/chkconfig
