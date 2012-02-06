@@ -6,8 +6,6 @@
 # description:	smsd is a SMS sending/receiving daemon
 #
 # processname:	smsd
-# config:
-# pidfile:
 
 # Source function library.
 . /etc/rc.d/init.d/functions
