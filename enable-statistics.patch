@@ -1,0 +1,15 @@
+# Enable statistics in smsd
+# (they are now disabled by default in the upstream sources)
+Index: smstools3/src/Makefile
+===================================================================
+--- smstools3.orig/src/Makefile	2017-05-10 13:11:44.888523264 +0200
++++ smstools3/src/Makefile	2017-05-10 13:11:44.872522321 +0200
+@@ -9,7 +9,7 @@
+ # CC=gcc
+ 
+ # Comment this out, to enable statistics
+-CFLAGS += -D NOSTATS
++#CFLAGS += -D NOSTATS
+ 
+ # Uncomment this to disable usage of inotify
+ #CFLAGS += -D DISABLE_INOTIFY

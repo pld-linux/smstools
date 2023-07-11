@@ -1,17 +1,18 @@
 Summary:	SMS Server Tools
 Summary(pl.UTF-8):	Narzędzia serwera SMS
 Name:		smstools
-Version:	2.2.20
+Version:	3.1.21
 Release:	1
 License:	GPL v2
 Group:		Applications/Communications
-Source0:	http://stefanfrings.de/smstools/%{name}-%{version}.tar.gz
-# Source0-md5:	8c77f2b461595b7a317fc4d0d2691956
+Source0:	http://smstools3.kekekasvi.com/packages/%{name}3-%{version}.tar.gz
+# Source0-md5:	6a9f038fb38a49cc3a4f8f14a88fb8af
 Source1:	%{name}.sysconfig
 Source2:	%{name}.init
-Patch0:		%{name}-daemonize.patch
+Patch0:		enable-statistics.patch
 Patch1:		%{name}-Makefile.patch
-URL:		http://stefanfrings.de/smstools/index-en.html
+Patch2:		gcc10.patch
+URL:		http://smstools3.kekekasvi.com/
 BuildRequires:	mm-devel
 BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(post,preun):	/sbin/chkconfig
@@ -31,26 +32,27 @@ odbierania przesyłek oraz zestaw skryptów dzięki którym można stworzyć
 np. bramkę email->SMS.
 
 %prep
-%setup -q -n %{name}
+%setup -q -n %{name}3
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__make} \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags}"
+	CFLAGS="-DNUMBER_OF_MODEMS=64 %{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{/etc/{rc.d/init.d,sysconfig},%{_sbindir},%{_libdir}/%{name}} \
 	$RPM_BUILD_ROOT/var/spool/sms/{incoming,outgoing,failed,sent,OTHER}
 
-install examples/smsd.conf.full $RPM_BUILD_ROOT%{_sysconfdir}/smsd.conf
-install src/smsd $RPM_BUILD_ROOT%{_sbindir}
-install scripts/{email2sms,mysmsd,sendsms,smsevent} $RPM_BUILD_ROOT%{_libdir}/%{name}
+cp -p examples/smsd.conf.full $RPM_BUILD_ROOT%{_sysconfdir}/smsd.conf
+cp -p src/smsd $RPM_BUILD_ROOT%{_sbindir}
+cp -p scripts/{email2sms,mysmsd,sendsms,smsevent} $RPM_BUILD_ROOT%{_libdir}/%{name}
 
-install %{SOURCE1} $RPM_BUILD_ROOT/etc/sysconfig/smsd
-install %{SOURCE2} $RPM_BUILD_ROOT/etc/rc.d/init.d/smsd
+cp -p %{SOURCE1} $RPM_BUILD_ROOT/etc/sysconfig/smsd
+cp -p %{SOURCE2} $RPM_BUILD_ROOT/etc/rc.d/init.d/smsd
 
 %clean
 rm -rf $RPM_BUILD_ROOT

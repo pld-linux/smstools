@@ -1,7 +1,7 @@
 diff -ur smstools/Makefile smstools.new/Makefile
 --- smstools/Makefile	2005-06-19 08:00:12.000000000 +0000
 +++ smstools.new/Makefile	2005-08-17 06:36:55.188942232 +0000
-@@ -3,7 +3,7 @@
+@@ -7,7 +7,7 @@ BINDIR=/usr/local/bin
  VERSION=$(shell grep package_version src/version.h | cut -f2)
  
  compile: 
@@ -9,9 +9,9 @@ diff -ur smstools/Makefile smstools.new/Makefile
 +	cd src && $(MAKE) $(MAKEFLAGS) 
  
  install: compile
- 	./install.sh
-@@ -12,7 +12,7 @@
- 	./uninstall.sh
+ 	./install.sh $(BINDIR)
+@@ -16,7 +16,7 @@ uninstall:
+ 	./uninstall.sh $(BINDIR)
  
  clean:
 -	cd src && $(MAKE) -$(MAKEFLAGS) clean
@@ -19,3 +19,4 @@ diff -ur smstools/Makefile smstools.new/Makefile
  
  package: compile clean
  	./package.sh
+
